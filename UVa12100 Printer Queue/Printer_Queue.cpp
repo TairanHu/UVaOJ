@@ -6,6 +6,8 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <fstream>
+#include <cstdlib>
 
 using namespace std;
 
@@ -13,20 +15,29 @@ vector<int> printer;
 int main()
 {
     int T;
+    bool flag;
+    int CNT = 0;
+    //ifstream test("printerqueue.in");   //从文件中读取
+    //test >> T;
     cin >> T;
+
 
     int p_tem;
 
     while(T--)
     {
+          CNT++;
+          flag = 0;
         int m, n;
         int k;
         int cnt = 0;
         cin >> m >> n;
+        //test >> m >> n;
         k = m;
         while(k--)
         {
             cin >> p_tem;
+            //test >> p_tem;
             printer.push_back(p_tem);
         }
         if(m == 1)
@@ -46,7 +57,7 @@ int main()
                     n--;
                     if(n == -1)
                     {
-                        n = m-1;
+                        n = printer.size()-1;
                     }
                 }
 
@@ -57,6 +68,7 @@ int main()
                     cnt++;
                     if(n == 0)
                     {
+                          flag = 1;
                         cout << cnt << endl;
                         break;
                     }
@@ -64,6 +76,8 @@ int main()
                 }
 
             }
+            if(!flag)
+                  cout << cnt+1 << endl;
         }
 
         printer.clear();
